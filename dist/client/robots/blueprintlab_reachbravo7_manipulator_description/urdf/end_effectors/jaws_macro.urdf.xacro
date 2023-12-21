@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="reach_bravo7_jaws" params="prefix">
+
+        <link name="${prefix}/jaws_base_link">
+            <visual>
+                <geometry>
+                    <mesh filename="package://blueprintlab_reachbravo7_manipulator_description/resources/meshes/end_effectors/jaws/jaws_base.obj"/>
+                </geometry>
+                <origin rpy="0 ${-pi/2} 0" xyz="0 0 -0.12"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <mesh filename="package://blueprintlab_reachbravo7_manipulator_description/resources/meshes/end_effectors/jaws/jaws_base.obj"/>
+                </geometry>
+                <origin rpy="0 ${-pi/2} 0" xyz="0 0 -0.12"/>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="1e-5"/>
+                <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+            </inertial>
+        </link>
+
+        <!-- Outside finger -->
+        <link name="${prefix}/finger_small_link">
+            <visual>
+                <geometry>
+                    <mesh filename="package://blueprintlab_reachbravo7_manipulator_description/resources/meshes/end_effectors/jaws/finger_small.obj"/>
+                </geometry>
+                <origin rpy="0 ${-pi/2} 0" xyz="0 0 0"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <mesh filename="package://blueprintlab_reachbravo7_manipulator_description/resources/meshes/end_effectors/jaws/finger_small.obj"/>
+                </geometry>
+                <origin rpy="0 ${-pi/2} 0" xyz="0 0 0"/>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="1e-5"/>
+                <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+            </inertial>
+        </link>
+
+        <!-- Inside finger -->
+        <link name="${prefix}/finger_large_link">
+            <visual>
+                <geometry>
+                    <mesh filename="package://blueprintlab_reachbravo7_manipulator_description/resources/meshes/end_effectors/jaws/finger_large.obj"/>
+                </geometry>
+                <origin rpy="0 ${-pi/2} 0" xyz="0 0 0"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <mesh filename="package://blueprintlab_reachbravo7_manipulator_description/resources/meshes/end_effectors/jaws/finger_small.obj"/>
+                </geometry>
+                <origin rpy="0 ${-pi/2} 0" xyz="0 0 0"/>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="1e-5"/>
+                <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+            </inertial>
+        </link>
+
+        <joint name="${prefix}/jaws_base_joint" type="fixed">
+            <origin rpy="0 0 ${pi/2}" xyz="0.0 0.0 0.12"/>
+            <parent link="${prefix}/link6"/>
+            <child link="${prefix}/jaws_base_link"/>
+        </joint>
+
+        <joint name="${prefix}/finger_small_joint" type="revolute">
+            <origin rpy="0 0 ${pi}" xyz="0.0269 0.0 0.03976"/>
+            <parent link="${prefix}/jaws_base_link"/>
+            <child link="${prefix}/finger_small_link"/>
+            <axis xyz="0 1 0"/>
+            <limit effort="10" lower="-1.0" upper="0.0" velocity="10"/>
+        </joint>
+
+        <joint name="${prefix}/finger_large_joint" type="revolute">
+            <origin rpy="0 0 ${pi}" xyz="-0.0269 0.0 0.03976"/>
+            <parent link="${prefix}/jaws_base_link"/>
+            <child link="${prefix}/finger_large_link"/>
+            <axis xyz="0 1 0"/>
+            <limit effort="10" lower="0" upper="1.0" velocity="10"/>
+        </joint>
+
+    </xacro:macro>
+</robot>

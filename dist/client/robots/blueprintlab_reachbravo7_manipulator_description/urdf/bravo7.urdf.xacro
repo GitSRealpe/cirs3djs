@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<robot name="girona500"
+    xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:arg name="arm_namespace" default="bravo"/>
+
+    <xacro:include filename="$(find blueprintlab_reachbravo7_manipulator_description)/urdf/bravo7_macro.urdf.xacro"/>
+    <xacro:include filename="$(find blueprintlab_reachbravo7_manipulator_description)/urdf/end_effectors/fingers_macro.urdf.xacro"/>
+
+    <xacro:reach_bravo7 prefix="$(arg arm_namespace)"/>
+    <xacro:reach_bravo7_fingers prefix="$(arg arm_namespace)"/>
+</robot>

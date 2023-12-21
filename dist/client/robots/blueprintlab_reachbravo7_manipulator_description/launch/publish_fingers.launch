@@ -1,0 +1,6 @@
+<launch>
+    <arg name="bravo_name" default="bravo"/>
+    <node pkg="blueprintlab_reachbravo7_manipulator_description" type="fingers_gripper_state_publisher.py" name="bravo_fingers_publisher" args="$(arg bravo_name)">
+        <remap from="joint_states" to="/bravo/joint_states"/>
+    </node>
+</launch>

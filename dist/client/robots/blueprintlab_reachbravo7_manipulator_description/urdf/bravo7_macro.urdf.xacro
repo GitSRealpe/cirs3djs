@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="reach_bravo7" params="prefix">
+
+        <link name="${prefix}/base_link">
+            <collision>
+                <geometry>
+                    <mesh filename="package://blueprintlab_reachbravo7_manipulator_description/resources/meshes/manipulator/base_link_phy.obj"/>
+                </geometry>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+            </collision>
+            <visual>
+                <geometry>
+                    <mesh filename="package://blueprintlab_reachbravo7_manipulator_description/resources/meshes/manipulator/base_link.obj"/>
+                </geometry>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+            </visual>
+        </link>
+
+        <link name="${prefix}/link1">
+            <collision>
+                <geometry>
+                    <mesh filename="package://blueprintlab_reachbravo7_manipulator_description/resources/meshes/manipulator/link1_phy.obj"/>
+                </geometry>
+                <origin rpy="${pi} 0 0" xyz="0 0 0"/>
+            </collision>
+            <visual>
+                <geometry>
+                    <mesh filename="package://blueprintlab_reachbravo7_manipulator_description/resources/meshes/manipulator/link1.obj"/>
+                </geometry>
+                <origin rpy="${pi} 0 0" xyz="0 0 0"/>
+            </visual>
+        </link>
+
+        <link name="${prefix}/link2">
+            <collision>
+                <geometry>
+                    <mesh filename="package://blueprintlab_reachbravo7_manipulator_description/resources/meshes/manipulator/link2_phy.obj"/>
+                </geometry>
+                <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+            </collision>
+            <visual>
+                <geometry>
+                    <mesh filename="package://blueprintlab_reachbravo7_manipulator_description/resources/meshes/manipulator/link2.obj"/>
+                </geometry>
+                <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+            </visual>
+        </link>
+
+        <link name="${prefix}/link3">
+            <collision>
+                <geometry>
+                    <mesh filename="package://blueprintlab_reachbravo7_manipulator_description/resources/meshes/manipulator/link3_phy.obj"/>
+                </geometry>
+                <origin rpy="${pi/2} 0 ${-pi/2}" xyz="0 0 0"/>
+            </collision>
+            <visual>
+                <geometry>
+                    <mesh filename="package://blueprintlab_reachbravo7_manipulator_description/resources/meshes/manipulator/link3.obj"/>
+                </geometry>
+                <origin rpy="${pi/2} 0 ${-pi/2}" xyz="0 0 0"/>
+            </visual>
+        </link>
+
+        <link name="${prefix}/link4">
+            <collision>
+                <geometry>
+                    <mesh filename="package://blueprintlab_reachbravo7_manipulator_description/resources/meshes/manipulator/link4_phy.obj"/>
+                </geometry>
+                <origin rpy="0 ${-pi/2} 0" xyz="0 0 0"/>
+            </collision>
+            <visual>
+                <geometry>
+                    <mesh filename="package://blueprintlab_reachbravo7_manipulator_description/resources/meshes/manipulator/link4.obj"/>
+                </geometry>
+                <origin rpy="0 ${-pi/2} 0" xyz="0 0 0"/>
+            </visual>
+        </link>
+
+        <link name="${prefix}/link5">
+            <collision>
+                <geometry>
+                    <mesh filename="package://blueprintlab_reachbravo7_manipulator_description/resources/meshes/manipulator/link5_phy.obj"/>
+                </geometry>
+                <origin rpy="${pi/2} 0 ${-pi/2}" xyz="0 0 0"/>
+            </collision>
+            <visual>
+                <geometry>
+                    <mesh filename="package://blueprintlab_reachbravo7_manipulator_description/resources/meshes/manipulator/link5.obj"/>
+                </geometry>
+                <origin rpy="${pi/2} 0 ${-pi/2}" xyz="0 0 0"/>
+            </visual>
+        </link>
+
+        <link name="${prefix}/link6">
+            <collision>
+                <geometry>
+                    <mesh filename="package://blueprintlab_reachbravo7_manipulator_description/resources/meshes/manipulator/link6_phy.obj"/>
+                </geometry>
+                <origin rpy="0 ${-pi/2} 0" xyz="0 0 0"/>
+            </collision>
+            <visual>
+                <geometry>
+                    <mesh filename="package://blueprintlab_reachbravo7_manipulator_description/resources/meshes/manipulator/link6_v2.obj"/>
+                </geometry>
+                <origin rpy="0 ${-pi/2} 0" xyz="0 0 0"/>
+            </visual>
+        </link>
+
+        <joint name="${prefix}/joint1" type="revolute">
+            <parent link="${prefix}/base_link"/>
+            <child link="${prefix}/link1"/>
+            <origin rpy="${pi} 0 0" xyz="0 0 0"/>
+            <axis xyz="0 0 -1"/>
+            <limit lower="-3.1" upper="3.1" velocity="0.5" effort="1.0"/>
+        </joint>
+
+        <joint name="${prefix}/joint2" type="revolute">
+            <parent link="${prefix}/link1"/>
+            <child link="${prefix}/link2"/>
+            <origin rpy="${pi/2} 0 0" xyz="0.046 0 0.0674"/>
+            <axis xyz="0 0 1"/>
+            <limit lower="${-pi/2}" upper="${pi/2}" velocity="0.5" effort="1.0"/>
+        </joint>
+
+        <joint name="${prefix}/joint3" type="revolute">
+            <parent link="${prefix}/link2"/>
+            <child link="${prefix}/link3"/>
+            <origin rpy="0 0 0" xyz="0.2906 0 0"/>
+            <axis xyz="0 0 1"/>
+            <limit lower="${-pi/2}" upper="${pi/2}" velocity="0.5" effort="1.0"/>
+        </joint>
+
+        <joint name="${prefix}/joint4" type="revolute">
+            <parent link="${prefix}/link3"/>
+            <child link="${prefix}/link4"/>
+            <origin rpy="${-pi/2} 0 ${pi}" xyz="0.0408 -0.09695 0"/>
+            <axis xyz="0 0 -1"/>
+            <limit lower="-3.1" upper="3.1" velocity="0.5" effort="1.0"/>
+        </joint>
+
+        <joint name="${prefix}/joint5" type="revolute">
+            <parent link="${prefix}/link4"/>
+            <child link="${prefix}/link5"/>
+            <origin rpy="${-pi/2} 0 0" xyz="-0.0408 0 0.063"/>
+            <axis xyz="0 0 1"/>
+            <limit lower="${-pi}" upper="0" velocity="0.5" effort="1.0"/>
+        </joint>
+
+        <joint name="${prefix}/joint6" type="revolute">
+            <parent link="${prefix}/link5"/>
+            <child link="${prefix}/link6"/>
+            <origin rpy="${pi/2} 0 0" xyz="0.0408 -0.08863 0"/>
+            <axis xyz="0 0 -1"/>
+            <limit lower="-3.1" upper="3.1" velocity="0.5" effort="1.0"/>
+        </joint>
+
+        <!-- Prismatic actuator -->
+        <!-- <link name="${prefix}/push_rod_link">
+        </link>
+
+        <joint name="${prefix}/push_rod" type="prismatic">
+            <origin rpy="0 0 0" xyz="0 0 ${0.124 + 0.009}"/>
+            <parent link="${prefix}/link6"/>
+            <child link="${prefix}/push_rod_link"/>
+            <axis xyz="0 0 1"/>
+            <limit lower="0" upper="0.03" velocity="0.02" effort="10"/>
+        </joint> -->
+    </xacro:macro>
+</robot>

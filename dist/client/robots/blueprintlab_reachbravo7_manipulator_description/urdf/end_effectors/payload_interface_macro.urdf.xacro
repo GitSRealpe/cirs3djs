@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="reach_bravo7_payload_interface" params="prefix">
+
+        <link name="${prefix}/payload_interface_link">
+            <visual>
+                <geometry>
+                    <mesh filename="package://blueprintlab_reachbravo7_manipulator_description/resources/meshes/end_effectors/payload_interface.obj" />
+                </geometry>
+            </visual>
+        </link>
+        <joint name="${prefix}/payload_interface_joint" type="fixed">
+            <origin rpy="0 0 0.0" xyz="0.0 0.0 0.127" /> <!-- TODO: Transform has been set visually -->
+            <parent link="${prefix}/link6" />
+            <child link="${prefix}/payload_interface_link" />
+        </joint>
+
+    </xacro:macro>
+</robot>

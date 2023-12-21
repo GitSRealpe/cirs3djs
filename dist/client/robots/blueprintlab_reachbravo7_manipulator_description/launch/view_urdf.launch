@@ -1,0 +1,17 @@
+
+<launch>
+  <arg name="use_gui" default="true"/>
+  <arg name="robot_description" default="robot_description"/>
+  <group ns="ReachBravo7">
+    <!-- Load robot description-->
+    <param name="$(arg robot_description)" command="xacro '$(find blueprintlab_reachbravo7_manipulator_description)/urdf/bravo7.urdf.xacro'"/>
+
+    <!-- Start joint and robot state publisher-->
+    <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" if="$(arg use_gui)"/>
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+    <!-- Start rviz -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find blueprintlab_reachbravo7_manipulator_description)/rviz/view_urdf.rviz" />
+  </group>
+</launch>
