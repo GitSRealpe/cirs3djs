@@ -1,0 +1,27 @@
+<launch>
+    <!-- Arguments -->
+    <arg name="robot_name" default="girona1000"/>
+    <arg name="arm_name" default="bravo"/>
+    <arg name="robot_xacro" default="$(find optihrov2_description)/urdf/g1000_optihrov2.macro.xacro"/>
+
+    <!-- robot to world -->
+    <node name="world2ned" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 3.1415 world $(arg robot_name)/base_link 100"/>
+
+    <group ns="$(arg robot_name)">
+        <!-- Robot description -->
+        <param name="robot_description" command="$(find xacro)/xacro '$(arg robot_xacro)' robot_namespace:=$(arg robot_name) arm_namespace:=$(arg arm_name)"/>
+
+        <!-- Robot state publisher -->
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen"/>
+
+        <!-- Start joint and robot state publisher-->
+        <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>
+    </group>
+
+    <!-- Start rviz -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find optihrov2_description)/config/cfg.rviz"/>
+    <!-- <node name="rviz" pkg="rviz" type="rviz"/> -->
+    
+    
+
+</launch>

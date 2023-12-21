@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+        CIRS GUI
+    </title>
+    <!-- <style>
+        body {
+            overflow: hidden;
+            margin: 0px;
+        }
+    </style> -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <h1>test</h1>
+    <form action="/action_page.php">
+        <label for="fname">WebSocket address:</label>
+        <input type="text" id="fname" name="fname">
+        <input type="submit" value="Connect">
+    </form>
+    <!-- when 3d object is selected, show contextual menu on rigth -->
+    <p>select task, place navigation goal, draw area/volume, set interaction goal, set valve turning task, open video
+        stream, add goal with giron ghost for both auv and manipulator goal, follow the robot wih camera (multiple
+        robots in mind), add goals to grupo to form a path (gruop color, goal colors, option to avoid obstacles or
+        specific type of path , lawnmoaner, line point to point)
+    </p>
+    <button onclick="sayGoodbye()" class="btn btn-primary">Primary button</button>
+
+    <div class="container-fluid">
+        <div class="row" style="height: 850px;">
+            <div id="pantalla" class="col-lg-9">
+                <div id="gui" style="height: 800px;"></div>
+            </div>
+            <div class="col overflow-auto" style="height: 800px;">
+                <div id="menus" class="grid-stack"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="bundle.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

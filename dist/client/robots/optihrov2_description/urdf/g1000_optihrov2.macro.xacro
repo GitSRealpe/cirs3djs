@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<robot name="girona1000" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:arg name="robot_namespace" default="girona1000"/>
+  <!-- <xacro:arg name="arm_namespace" default="bravo"/> -->
+  <xacro:arg name="reach_bravo7_namespace" default="$(arg robot_namespace)/bravo"/>
+
+  <!-- Include Girona1000 -->
+  <xacro:include filename="$(find optihrov2_description)/urdf/girona1000.urdf.xacro"/>
+  <!-- Include manipulators -->
+  <xacro:include filename="$(find blueprintlab_reachbravo7_manipulator_description)/urdf/bravo7_macro.urdf.xacro"/>
+
+  <xacro:girona1000 ns="$(arg robot_namespace)"/>
+  <!-- Add manipulators-->
+  <xacro:reach_bravo7 prefix="$(arg reach_bravo7_namespace)"/>
+
+  <!-- Attach manipulators to base -->
+  <joint name="girona1000_to_bravo" type="fixed">
+    <parent link="$(arg robot_namespace)/origin"/>
+    <child link="$(arg reach_bravo7_namespace)/base_link"/>
+    <origin rpy="0.0 0.0 -0.175" xyz="0.7322 -0.1382 0.406"/>
+  </joint>
+
+  <!-- Include End Effectors -->
+  <xacro:include filename="$(find blueprintlab_reachbravo7_manipulator_description)/urdf/end_effectors/jaws_macro.urdf.xacro"/>
+  <xacro:reach_bravo7_jaws prefix="$(arg reach_bravo7_namespace)"/>
+
+  <!-- Add Bravo payload interface -->
+  <!-- <xacro:reach_bravo7_payload_interface prefix="$(arg reach_bravo7_namespace)"/> -->
+
+  <!-- Camera -->
+  <!-- <link name="$(arg reach_bravo7_namespace)/camera"/>
+  <joint name="$(arg reach_bravo7_namespace)/camera_fixed" type="fixed">
+    <parent link="$(arg reach_bravo7_namespace)/link6"/>
+    <child link="$(arg reach_bravo7_namespace)/camera"/>
+    <origin rpy="0 0.0 -1.57" xyz="-0.06 0 0.1"/>
+  </joint> -->
+
+  <!-- <link name="$(arg robot_namespace)/flir_spinnaker_camera"/>
+  <joint name="$(arg robot_namespace)/flir_spinnaker_camera_joint" type="fixed">
+    <parent link="$(arg robot_namespace)/base_link"/>
+    <child link="$(arg robot_namespace)/flir_spinnaker_camera"/>
+    <origin rpy="1.33 0.0 1.64" xyz=" 0.32 -0.12 0.2"/>
+  </joint> -->
+
+  <link name="$(arg reach_bravo7_namespace)/tcp"/>
+  <joint name="$(arg reach_bravo7_namespace)/tcp_joint" type="fixed">
+    <parent link="$(arg reach_bravo7_namespace)/link6"/>
+    <child link="$(arg reach_bravo7_namespace)/tcp"/>
+    <origin rpy="0 0.0 0" xyz=" 0.0 0 0.2"/>
+  </joint>
+
+  <!-- <link name="$(arg robot_namespace)/laser_link"/>
+  <joint name="$(arg robot_namespace)/laser_link_joint" type="fixed">
+    <parent link="$(arg robot_namespace)/base_link"/>
+    <child link="$(arg robot_namespace)/laser_link"/>
+    <origin rpy="1.33 0.0 1.64" xyz=" 0.32 0.12 -0.17"/>
+  </joint> -->
+
+
+</robot>
