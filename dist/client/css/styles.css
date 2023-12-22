@@ -14,7 +14,7 @@
 .grid-stack-item-content {
     color: #2c3e50;
     text-align: center;
-    background-color: #18bc9c;
+    background-color: #b4bdbb;
 }
 
 .grid-stack-item-removing {
@@ -24,6 +24,8 @@
 .widget-header {
     cursor: move;
     min-height: 25px;
+    background-color: #18bc9c;
+    text-align: end;
 }
 
 .widget-header:hover {

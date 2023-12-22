@@ -28,7 +28,8 @@
     <p>select task, place navigation goal, draw area/volume, set interaction goal, set valve turning task, open video
         stream, add goal with giron ghost for both auv and manipulator goal, follow the robot wih camera (multiple
         robots in mind), add goals to grupo to form a path (gruop color, goal colors, option to avoid obstacles or
-        specific type of path , lawnmoaner, line point to point)
+        specific type of path , lawnmoaner, line point to point), prints de task priority en una tab additional
+        (incluso, print de cualquier topico, porque no?)
     </p>
     <button onclick="sayGoodbye()" class="btn btn-primary">Primary button</button>
 
@@ -38,6 +39,7 @@
                 <div id="gui" style="height: 800px;"></div>
             </div>
             <div class="col overflow-auto" style="height: 800px;">
+                <button id="addGoal" class="btn btn-primary">Add goal</button>
                 <div id="menus" class="grid-stack"></div>
             </div>
         </div>
